@@ -141,6 +141,36 @@ def logout():
     return redirect(url_for('get_all_posts'))
 
 
+@app.route('/profile')
+@login_required
+def profile():
+    return render_template("profile.html", current_user=current_user)
+
+
+@app.route('/delete_profile')
+@login_required
+def delete_profile():
+    user = User.query.get(current_user.id)
+    if user:
+        # Kommentek törlése
+        Comment.query.filter_by(author_id=user.id).delete()
+
+        # Megosztott bejegyzések törlése
+        BlogPost.query.filter_by(author_id=user.id).delete()
+
+        # Felhasználó törlése az adatbázisból
+        db.session.delete(user)
+        db.session.commit()
+
+        logout_user()
+
+        # Automatikus kijelentkeztetés és átirányítás a logout útvonalra
+        return redirect(url_for('logout'))
+
+    else:
+        abort(404)  # Felhasználó nem található vagy már törölve van
+
+
 @app.route('/')
 def get_all_posts():
     posts = BlogPost.query.order_by(desc(BlogPost.date)).all()
@@ -151,6 +181,12 @@ def get_all_posts():
 @app.route("/post/<int:post_id>", methods=["GET", "POST"])
 def show_post(post_id):
     requested_post = db.get_or_404(BlogPost, post_id)
+
+    # Megtekintések számának növelése, ha a GET kérés érkezik
+    if request.method == "GET":
+        requested_post.views += 1
+        db.session.commit()
+
     # Add the CommentForm to the route
     comment_form = CommentForm()
     # Only allow logged-in users to comment on posts
@@ -220,16 +256,6 @@ def delete_post(post_id):
     db.session.delete(post_to_delete)
     db.session.commit()
     return redirect(url_for('get_all_posts'))
-
-
-@app.route('/post/<int:post_id>')
-def view_post(post_id):
-    post = BlogPost.query.get_or_404(post_id)
-
-    if request.referrer == url_for('index'):
-        post.increment_views()
-        db.session.commit()
-    return render_template('post.html', post=post)
 
 @app.route("/about")
 def about():

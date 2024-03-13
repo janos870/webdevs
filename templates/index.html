@@ -23,19 +23,18 @@
       <!-- Post preview-->
       {% for post in all_posts %}
       <div class="post-preview">
-        <a href="{{ url_for('view_post', post_id=post.id) }}">
+        <a href="{{ url_for('show_post', post_id=post.id) }}">
           <h2 class="post-title">{{ post.title }}</h2>
           <h3 class="post-subtitle">{{ post.subtitle }}</h3>
         </a>
         <p class="post-meta">
           Posted by
           <!-- post.author.name is now a User object -->
-          <a href="#">{{post.author.name}}</a>
-          on {{post.date}}
-          <span>Views: {{ post.views }}</span>
+          <a href="#">{{post.author.name}} on {{post.date}}</a>
+          <span class="fa-solid fa-eye mx-2"></span> <strong>{{ post.views }}</strong>
           <!-- Only show delete button if user id is 1 (admin user) -->
           {% if current_user.id == 1: %}
-          <a href="{{url_for('delete_post', post_id=post.id) }}" style="color: red">✘</a>
+          <a class="mx-2" href="{{url_for('delete_post', post_id=post.id) }}" style="color: red">✘</a>
           {% endif %}
         </p>
       </div>
