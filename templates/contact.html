@@ -7,11 +7,11 @@
             <div class="col-md-10 col-lg-8 col-xl-7">
                 <div class="page-heading">
                     {% if msg_sent: %}
-                    <h1>Successfully sent your message</h1>
+                    <h1>Üzenetét sikeresen elküldte.</h1>
                     {% else: %}
-                    <h1>Contact Me</h1>
+                    <h1>Keress meg.</h1>
                     {% endif %}
-                    <span class="subheading">Have questions? I have answers.</span>
+                    <span class="subheading">Van kérdésed? Van rá válaszom.</span>
                 </div>
             </div>
         </div>
@@ -23,8 +23,7 @@
     <div class="row gx-4 gx-lg-5 justify-content-center">
       <div class="col-md-10 col-lg-8 col-xl-7">
         <p>
-          Want to get in touch? Fill out the form below to send me a message and
-          I will get back to you as soon as possible!
+          Szeretnél kapcsolatba lépni? Töltsd ki az alábbi űrlapot, hogy üzenetet küldj nekem, és mielőbb válaszolok rá!
         </p>
         <div class="my-5">
           <!-- * * * * * * * * * * * * * * *-->
@@ -41,10 +40,10 @@
                 id="name"
                 name="name"
                 type="text"
-                placeholder="Enter your name..."
+                placeholder="Írd be a neved..."
                 required
               />
-              <label for="name">Name</label>
+              <label for="name">Név:</label>
             </div>
             <div class="form-floating">
               <input
@@ -52,10 +51,10 @@
                 id="email"
                 name="email"
                 type="email"
-                placeholder="Enter your email..."
+                placeholder="Írd be az email címed..."
                 required
               />
-              <label for="email">Email address</label>
+              <label for="email">Email cím:</label>
             </div>
             <div class="form-floating">
               <input
@@ -63,21 +62,21 @@
                 id="phone"
                 name="phone"
                 type="tel"
-                placeholder="Enter your phone number..."
+                placeholder="Írd be a telefonszámod..."
                 required
               />
-              <label for="phone">Phone Number</label>
+              <label for="phone">Telefonszám:</label>
             </div>
             <div class="form-floating">
               <textarea
                 class="form-control"
                 id="message"
                 name="message"
-                placeholder="Enter your message here..."
+                placeholder="Írd ide az üzenetedet..."
                 required
                 style="height: 12rem"
               ></textarea>
-              <label for="message">Message</label>
+              <label for="message">Üzenet:</label>
             </div>
             <br />
             <button
@@ -85,7 +84,7 @@
               id="submitButton"
               type="submit"
             >
-              Send
+              Küldés
             </button>
           </form>
         </div>

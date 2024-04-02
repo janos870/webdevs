@@ -67,21 +67,21 @@
           <a
             class="nav-link px-lg-3 py-3 py-lg-4"
             href="{{ url_for('get_all_posts') }}"
-          >Home</a
+          >Kezdőlap</a
           >
         </li>
         <li class="nav-item d-flex align-items-center">
           <a
             class="nav-link px-lg-3 py-3 py-lg-4"
             href="{{ url_for('about') }}"
-          >About</a
+          >Rólunk</a
           >
         </li>
         <li class="nav-item d-flex align-items-center">
           <a
             class="nav-link px-lg-3 py-3 py-lg-4"
             href="{{ url_for('contact') }}"
-          >Contact</a
+          >Kapcsolat</a
           >
         </li>
         <!-- Only show Login/Register if user is logged out. Otherwise show "Log Out" -->
@@ -90,14 +90,14 @@
           <a
             class="nav-link px-lg-3 py-3 py-lg-4"
             href="{{ url_for('login') }}"
-          >Login</a
+          >Bejetkezés</a
           >
         </li>
         <li class="nav-item d-flex align-items-center">
           <a
             class="nav-link px-lg-3 py-3 py-lg-4"
             href="{{ url_for('register') }}"
-          >Register</a
+          >Regisztráció</a
           >
         </li>
         {% else: %}
@@ -105,7 +105,7 @@
           <a
             class="nav-link px-lg-3 py-3 py-lg-4"
             href="{{ url_for('logout') }}"
-          >Log Out</a
+          >Kijelentkezés</a
           >
         </li>
         <li class="nav-item">

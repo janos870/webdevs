@@ -1,3 +1,4 @@
+from datetime import datetime
 
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import relationship, DeclarativeBase, Mapped, mapped_column
@@ -17,7 +18,8 @@ class BlogPost(db.Model):
     author = db.relationship("User", back_populates="posts")
     title = db.Column(db.String(250), unique=True, nullable=False)
     subtitle = db.Column(db.String(250), nullable=False)
-    date = db.Column(db.String(250), nullable=False)
+    # date = db.Column(db.String(250), nullable=False)
+    date = db.Column(db.String(10), default=datetime.now().strftime('%Y-%m-%d'))
     body = db.Column(db.Text, nullable=False)
     img_url = db.Column(db.String(250), nullable=False)
     comments = db.relationship("Comment", back_populates="parent_post")
@@ -26,6 +28,7 @@ class BlogPost(db.Model):
 
     def increment_views(self):
         self.views += 1
+
 
 
 # Create a User table for all your registered users

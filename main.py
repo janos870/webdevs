@@ -228,6 +228,7 @@ def add_new_post():
 
 # Use a decorator so only an admin user can edit a post
 @app.route("/edit-post/<int:post_id>", methods=["GET", "POST"])
+@admin_only
 def edit_post(post_id):
     post = db.get_or_404(BlogPost, post_id)
     edit_form = CreatePostForm(
@@ -279,8 +280,6 @@ def send_email(name, email, phone, message):
             connection.sendmail(EMAIL, EMAIL, email_message)
     except SMTPException as e:
         print(f"SMTP Error: {e}")
-
-
 
 if __name__ == "__main__":
     app.run(debug=True, port=5001)
