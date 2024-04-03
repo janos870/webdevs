@@ -122,11 +122,11 @@ def login():
         user = result.scalar()
         # Email doesn't exist
         if not user:
-            flash("That email does not exist, please try again.")
+            flash("Ez az e-mail cím nem létezik, próbáld újra.")
             return redirect(url_for('login'))
         # Password incorrect
         elif not check_password_hash(user.password, password):
-            flash('Password incorrect, please try again.')
+            flash('Hibás jelszó, próbálkozzon újra.')
             return redirect(url_for('login'))
         else:
             login_user(user)

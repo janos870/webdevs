@@ -10,10 +10,10 @@
           <h1>{{ post.title }}</h1>
           <h2 class="subheading">{{ post.subtitle }}</h2>
           <span class="meta"
-          >Posted by
+          >Közzétéve
             <!-- Changed from post.author -->
-            <a href="#">{{ post.author.name }}</a>
-            on {{ post.date }}
+            <a href="#">{{ post.author.name }} által, </a>
+              {{  post.date }}
           </span>
         </div>
       </div>
@@ -33,7 +33,7 @@
           <a
             class="btn btn-primary float-right"
             href="{{url_for('edit_post', post_id=post.id)}}"
-          >Edit Post</a
+          >Bejegyzés szerkesztése</a
           >
         </div>
         {% endif %}
