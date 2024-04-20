@@ -48,7 +48,7 @@ login_manager.init_app(app)
 
 load_dotenv()
 
-mail = Mail(app)
+# mail = Mail(app)
 
 # Configure smtp settings
 smtp_server = 'smtp.gmail.com'
