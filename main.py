@@ -12,7 +12,7 @@ from smtplib import SMTPException
 import os
 from dotenv import load_dotenv
 from flask_mail import Message
-from flask_mail import Mail
+# from flask_mail import Mail
 
 
 from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm
