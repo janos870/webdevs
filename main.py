@@ -11,6 +11,9 @@ import smtplib
 from smtplib import SMTPException
 import os
 from dotenv import load_dotenv
+from flask_mail import Message
+from flask_mail import Mail
+
 
 from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm
 from models.model import User, BlogPost, Comment, db
@@ -44,6 +47,8 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 
 load_dotenv()
+
+mail = Mail(app)
 
 # Configure smtp settings
 smtp_server = 'smtp.gmail.com'
@@ -106,10 +111,23 @@ def register():
         )
         db.session.add(new_user)
         db.session.commit()
+
+        # Send confirmation email
+        send_confirmation_email(new_user.email)
+
+
         # This line will authenticate the user with Flask-Login
         login_user(new_user)
         return redirect(url_for("get_all_posts"))
     return render_template("register.html", form=form, current_user=current_user)
+
+def send_confirmation_email(email):
+    try:
+        email_message = Message('Confirm Registration', recipients=[email])
+        email_message.body = 'Thank you for registering. Please confirm your email by clicking on the following link: [link]'
+        mail.send(email_message)
+    except Exception as e:
+        print(f"SMTP Error: {e}")
 
 
 @app.route('/login', methods=["GET", "POST"])
