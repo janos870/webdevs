@@ -300,4 +300,4 @@ def send_email(name, email, phone, message):
         print(f"SMTP Error: {e}")
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5001)
+    app.run(debug=False, port=5001)
