@@ -1,15 +1,16 @@
 from datetime import datetime
+
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import relationship, DeclarativeBase, Mapped, mapped_column
 from sqlalchemy import Integer, String, Text
 from flask_login import UserMixin
 
 
+# class Base(DeclarativeBase):
+#     pass
 
-class Base(DeclarativeBase):
-    pass
+db = SQLAlchemy()
 
-db = SQLAlchemy(model_class=Base)
 
 # CONFIGURE TABLES
 class BlogPost(db.Model):
