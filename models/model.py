@@ -5,12 +5,7 @@ from sqlalchemy.orm import relationship, DeclarativeBase, Mapped, mapped_column
 from sqlalchemy import Integer, String, Text
 from flask_login import UserMixin
 
-
-# class Base(DeclarativeBase):
-#     pass
-
 db = SQLAlchemy()
-
 
 # CONFIGURE TABLES
 class BlogPost(db.Model):
@@ -20,7 +15,6 @@ class BlogPost(db.Model):
     author = db.relationship("User", back_populates="posts")
     title = db.Column(db.String(250), unique=True, nullable=False)
     subtitle = db.Column(db.String(250), nullable=False)
-    # date = db.Column(db.String(250), nullable=False)
     date = db.Column(db.String(10), default=datetime.now().strftime('%Y-%m-%d'))
     body = db.Column(db.Text, nullable=False)
     img_url = db.Column(db.String(250), nullable=False)
