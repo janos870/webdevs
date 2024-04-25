@@ -18,6 +18,8 @@ from dotenv import load_dotenv
 from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm
 from models.model import User, BlogPost, Comment, db
 
+load_dotenv()
+
 '''
 Make sure the required packages are installed: 
 
@@ -31,12 +33,11 @@ This will install the packages from the requirements.txt for this project.
 '''
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DB_URL', "sqlite:///posts.db")
-
-# os.getenv("DB_URL", "sqlite:///posts.db")
-
-# db = SQLAlchemy(app)
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DB_URL')
 db.init_app(app)
+
+# 'sqlite:///posts.db'
+
 app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
 ckeditor = CKEditor(app)
 Bootstrap5(app)
@@ -48,7 +49,6 @@ with app.app_context():
 login_manager = LoginManager()
 login_manager.init_app(app)
 
-load_dotenv()
 
 # mail = Mail(app)
 

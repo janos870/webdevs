@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import relationship, DeclarativeBase, Mapped, mapped_column
 from sqlalchemy import Integer, String, Text
@@ -7,16 +5,16 @@ from flask_login import UserMixin
 
 db = SQLAlchemy()
 
+
 # CONFIGURE TABLES
 class BlogPost(db.Model):
     __tablename__ = "blog_posts"
     id = db.Column(db.Integer, primary_key=True)
     author_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     author = db.relationship("User", back_populates="posts")
-    title = db.Column(db.String(250), unique=True, nullable=False)
+    title = db.Column(db.String(100), nullable=False)
     subtitle = db.Column(db.String(250), nullable=False)
     date = db.Column(db.String(250), nullable=False)
-    # date = db.Column(db.String(10), default=datetime.now().strftime('%Y-%m-%d'))
     body = db.Column(db.Text, nullable=False)
     img_url = db.Column(db.String(250), nullable=False)
     comments = db.relationship("Comment", back_populates="parent_post")
