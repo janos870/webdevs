@@ -1,26 +1,24 @@
-{% include "header.html" %}
+{% include 'header.html' %}
 
 <header class="masthead" style="background-image: url('../static/assets/');">
   <div class="container position-relative px-4 px-lg-5 d-flex flex-column justify-content-center align-items-center">
     <div class="text-center">
       <div class="text-center">
         <div class="site-heading d-flex align-items-center">
-            <img style="border: 2px solid; background: #F5F7F8;" class="rounded-circle" src="{{ current_user.email | gravatar }}" width="150">
-            <div class="d-flex flex-column mx-4">
-              <h2>{{ current_user.name }}</h2>
-              <h5 class="opacity-75">{{ current_user.email  }}</h5>
-            </div>
+          <img style="border: 2px solid; background: #F5F7F8;" class="rounded-circle" src="{{ current_user.email|gravatar }}" width="150" />
+          <div class="d-flex flex-column mx-4">
+            <h2>{{ current_user.name }}</h2>
+            <h5 class="opacity-75">{{ current_user.email }}</h5>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </header>
 
-
-
 <main class="text-center my-5">
-  <a class="btn btn-outline-secondary text-uppercase mx-5" href="{{ url_for('logout') }}">Kijelentkezés</a>
-  <a  onclick="confirmDelete()" class="btn btn-warning text-uppercase">Profil törlése</a>
+  <a class="btn btn-outline-secondary text-uppercase mx-5" href="{{ url_for('account.logout') }}">Kijelentkezés</a>
+  <a onclick="confirmDelete()" class="btn btn-warning text-uppercase">Profil törlése</a>
 </main>
 
 <div id="confirmationModal" class="modal" tabindex="-1" role="dialog" style="display: none;">
@@ -28,13 +26,9 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Megerősítés</h5>
-        <button type="button" class="close" onclick="hideConfirmation()" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <button type="button" class="close" onclick="hideConfirmation()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       </div>
-      <div class="modal-body">
-        Biztosan törlöd a profilodat?
-      </div>
+      <div class="modal-body">Biztosan törlöd a profilodat?</div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" onclick="hideConfirmation()">Mégsem</button>
         <button type="button" class="btn btn-danger" onclick="deleteProfile()">Törlés</button>
@@ -43,5 +37,4 @@
   </div>
 </div>
 
-
-{% include "footer.html" %}
+{% include 'footer.html' %}
